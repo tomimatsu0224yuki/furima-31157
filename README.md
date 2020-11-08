@@ -36,7 +36,7 @@
 ### Association
 
 - belongs_to :users
-- belongs_to :purchases
+- has_one :purchases
 - belongs_to :category(active_hash)
 - belongs_to :condition(active_hash)
 - belongs_to :shipping_charge(active_hash)
@@ -47,14 +47,14 @@
 
 ## addresses
 
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| postal_code   | string  | null: false                    |
-| prefecture_id | integer | null: false, foreign_key: true |
-| city          | string  | null: false                    |
-| block         | string  | null: false                    |
-| building_name | string  |                                |
-| phone_num     | string  | null: false                    |
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| postal_code   | string  | null: false |
+| prefecture_id | integer | null: false |
+| city          | string  | null: false |
+| block         | string  | null: false |
+| building_name | string  |             |
+| phone_num     | string  | null: false |
 
 ### Association
 - belongs_to :prefecture(active_hash)
@@ -63,14 +63,14 @@
 
 ## purchases
 
-| Column | Type   | Options     |
-| item   | string | null: false |
-| user   | string | null: false |
+| Column | Type       | Options                        |
+| item   | references | null: false, foreign_key :true |
+| user   | references | null: false, foreign_key :true |
 
 ### Association
 - belongs_to :users
 - belongs_to :items
-- belongs_to :addresses
+- has_one :addresses
 
 
 ## category(active_hash)
