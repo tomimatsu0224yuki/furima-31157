@@ -35,8 +35,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :purchases
+- belongs_to :user
+- has_one :purchase
 - belongs_to :category(active_hash)
 - belongs_to :condition(active_hash)
 - belongs_to :shipping_charge(active_hash)
@@ -58,7 +58,7 @@
 
 ### Association
 - belongs_to :prefecture(active_hash)
-- belongs_to :purchases
+- belongs_to :purchase
 
 
 ## purchases
@@ -68,9 +68,9 @@
 | user   | references | null: false, foreign_key :true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
-- has_one :addresses
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
 
 ## category(active_hash)
