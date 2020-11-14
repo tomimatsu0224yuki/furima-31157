@@ -1,16 +1,25 @@
 class Item < ApplicationRecord
- belongs_to :users
- has_one :purchases
-#  belongs_to :category(active_hash)
-#  belongs_to :condition(active_hash)
-#  belongs_to :shipping_charge(active_hash)
-#  belongs_to :prefecture(active_hash)
-#  belongs_to :processing_time(active_hash)
-#  belongs_to :price(active_hash)
- has_one_attached :image
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  #avtive hash 
+   belongs_to :category
+   belongs_to :condition
+   belongs_to :shipping_charge
+   belongs_to :prefecture
+   belongs_to :processing_time
 
- validates :content, presence: true, unless: :was_attached?
+   validates :category_id, numericality: { other_than: 1 } 
+   validates :condition_id, numericality: { other_than: 1 } 
+   validates :shipping_charge_id, numericality: { other_than: 1 } 
+   validates :prefecture_id, numericality: { other_than: 1 } 
+   validates :processing_time_id, numericality: { other_than: 1 } 
+  #/ative hash
 
+  belongs_to :users
+  has_one :purchases
+  has_one_attached :image
+
+  validates :content, presence: true, unless: :was_attached?
+ 
  def was_attached?
   self.image.attached?
 end
