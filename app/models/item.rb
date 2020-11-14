@@ -1,5 +1,8 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+   validates :item_name, presence: true
+   validates :item_discription, presence: true
+
   #avtive hash 
    belongs_to :category
    belongs_to :condition
@@ -16,6 +19,7 @@ class Item < ApplicationRecord
  
   #acrive strage
   has_one_attached :image
+
   validates :content, presence: true, unless: :was_attached?
   #/active strage
 
