@@ -13,13 +13,17 @@ class Item < ApplicationRecord
    validates :prefecture_id, numericality: { other_than: 1 } 
    validates :processing_time_id, numericality: { other_than: 1 } 
   #/ative hash
+ 
+  #acrive strage
+  has_one_attached :image
+  validates :content, presence: true, unless: :was_attached?
+  #/active strage
 
+  
   belongs_to :users
   has_one :purchases
-  has_one_attached :image
-
-  validates :content, presence: true, unless: :was_attached?
- 
+  
+   
  def was_attached?
   self.image.attached?
 end
