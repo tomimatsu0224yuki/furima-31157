@@ -6,7 +6,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     unless user_signed_in?
-      redirect_to new_user_session_path
+      # flash.now[:alert] = 'メッセージを入力してください。'
+      redirect_to new_user_session_path, notice: 'You need to sign in or sign up before continuing.'
     end
   end
 
