@@ -1,7 +1,8 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-   validates :item_name, presence: true
-   validates :item_discription, presence: true
+   validates :item_name, presence: true, length: {maximum: 40} 
+   validates :item_discription, presence: true, length: {maximum: 1000}
+   validates :price, presence: true, format: { with: /\d+/ }, numericality: {greater_than_or_equal_to: 300}, numericality: {less_than_or_equal_to: 9999999}
 
   #avtive hash 
    belongs_to :category
@@ -10,25 +11,23 @@ class Item < ApplicationRecord
    belongs_to :prefecture
    belongs_to :processing_time
 
-   validates :category_id, numericality: { other_than: 1 } 
-   validates :condition_id, numericality: { other_than: 1 } 
-   validates :shipping_charge_id, numericality: { other_than: 1 } 
-   validates :prefecture_id, numericality: { other_than: 1 } 
-   validates :processing_time_id, numericality: { other_than: 1 } 
+   validates :category_id, presence: true,numericality: { other_than: 1 } 
+   validates :condition_id,presence: true, numericality: { other_than: 1 } 
+   validates :shipping_charge_id, presence: true,numericality: { other_than: 1 } 
+   validates :prefecture_id, presence: true,numericality: { other_than: 0 } 
+   validates :processing_time_id, presence: true,numericality: { other_than: 1 } 
   #/ative hash
  
   #acrive strage
   has_one_attached :image
-
-  validates :content, presence: true, unless: :was_attached?
   #/active strage
 
   
-  belongs_to :users
+  belongs_to :user
   has_one :purchases
   
    
- def was_attached?
-  self.image.attached?
-end
+  def was_attached?
+    self.image.attached?
+  end
 end
