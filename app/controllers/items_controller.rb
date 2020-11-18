@@ -5,9 +5,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    unless user_signed_in?
-      redirect_to new_user_session_path, notice: 'You need to sign in or sign up before continuing.'
-    end
+    redirect_to new_user_session_path, notice: 'You need to sign in or sign up before continuing.' unless user_signed_in?
   end
 
   def create
@@ -19,7 +17,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def item_params
     params.require(:item).permit(:image, :item_name, :item_discription, :category_id, :condition_id, :shipping_charge_id, :prefecture_id, :processing_time_id, :price).merge(user_id: current_user.id)
