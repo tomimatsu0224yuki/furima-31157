@@ -33,42 +33,42 @@ describe Item do
         expect(@item.errors.full_messages).to include("Item discription can't be blank")
       end
       it 'category_idの情報が存在しないと出品できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it 'condition_idの情報が存在しないと出品できない' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Condition must be other than 1')
       end
       it 'shipping_charge_idの情報が存在しないと出品できない' do
-        @item.shipping_charge_id = '1'
+        @item.shipping_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Shipping charge must be other than 1')
       end
       it 'prefecture_idの情報が存在しないと出品できない' do
-        @item.prefecture_id = '0'
+        @item.prefecture_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include('Prefecture must be other than 0')
       end
       it 'processing_time_idの情報が存在しないと出品できない' do
-        @item.processing_time_id = '1'
+        @item.processing_time_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include('Processing time must be other than 1')
       end
       it 'priceが存在しないと出品できない' do
-        @item.price = ''
+        @item.price = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが¥300以下だと出品できない' do
-        @item.price = '100'
+        @item.price = 100
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceが¥9,999,999以上だと出品できない' do
-        @item.price = '100000000'
+        @item.price = 100000000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
