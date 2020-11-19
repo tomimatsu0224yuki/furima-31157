@@ -9,14 +9,6 @@ describe Item do
       it 'user, image, item_name, item_discripion, category_id, condition_id, shipping_charge_id, prefecture_id, processing_time_id, priceが存在すれば出品できる' do
         expect(@item).to be_valid
       end
-      it '価格の範囲が、¥300~¥9,999,999の間で出品できる' do
-        @item.price = '1000'
-        expect(@item).to be_valid
-      end
-      it '販売価格が半角数字で出品できる' do
-        @item.price = '1000'
-        expect(@item).to be_valid
-      end
     end
 
     context '出品がうまくいかないとき' do
