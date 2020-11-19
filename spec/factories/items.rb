@@ -4,11 +4,11 @@ FactoryBot.define do
     user               { User.new }
     item_name          { 'hoge' }
     item_discription   { 'hogehoge' }
-    category_id        { '2' }
-    condition_id       { '2' }
-    shipping_charge_id { '2' }
-    prefecture_id      { '2' }
-    processing_time_id { '2' }
-    price              { '1000' }
+    category_id        { 2 }
+    condition_id       { 2 }
+    shipping_charge_id { 2 }
+    prefecture_id      { 2 }
+    processing_time_id { 2 }
+    price              { 1000 }
   end
 end

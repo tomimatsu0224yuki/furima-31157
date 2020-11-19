@@ -1,11 +1,11 @@
 class ItemsController < ApplicationController
+  before_action:authenticate_user!, except: :index
   def index
     @items = Item.all.order("created_at DESC")
   end
 
   def new
     @item = Item.new
-    redirect_to new_user_session_path, notice: 'You need to sign in or sign up before continuing.' unless user_signed_in?
   end
 
   def create
